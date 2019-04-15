@@ -30,8 +30,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <excludes>
                         <exclude>${basedir}/Javadocs</exclude>
                         <exclude>${basedir}/lib</exclude>
@@ -60,15 +60,6 @@
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-
         </plugins>
 
     </build>
@@ -78,14 +69,26 @@
     </properties>
 
     <repositories>
-        <repository>
+<!--        <repository>
             <id>staartvin-repo</id>
             <url>http://62.131.38.74:8081/artifactory/ext-release-local/</url>
-        </repository>
+        </repository>-->
 
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
         <repository>
             <id>Spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>ess-repo</id>
+            <url>http://repo.ess3.net/content/groups/essentials</url>
+        </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
     </repositories>
 
@@ -95,6 +98,7 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.13-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
             <type>jar</type>
         </dependency>
 
@@ -102,16 +106,18 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.13-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>EssentialsGroupManager</groupId>
+            <groupId>net.ess3</groupId>
             <artifactId>EssentialsGroupManager</artifactId>
-            <version>2.1.11</version>
+            <version>2.13.1</version>
+            <scope>provided</scope>
             <type>jar</type>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>com.platymuus</groupId>
             <artifactId>bukkit-permissions</artifactId>
             <version>2.5</version>
@@ -121,12 +127,14 @@
                     <groupId>org.mcstats.bukkit</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>me.staartvin</groupId>
             <artifactId>PluginLibrary</artifactId>
             <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/PluginLibrary-1.2.1.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -139,13 +147,15 @@
             <groupId>me.staartvin.Statz</groupId>
             <artifactId>Statz</artifactId>
             <version>LATEST</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Statz-1.5.3.jar</systemPath>
         </dependency>
 
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
-            <artifactId>Vault</artifactId>
-            <version>1.5.6</version>
-            <type>jar</type>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
