@@ -98,15 +98,28 @@ public class MySQLStorageProvider extends StorageProvider {
         // Run clean statement async so it won't bother main thread.
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> mysqlLibrary.execute(statement));
 
-        return;
     }
 
     @Override
     public void addPlayerTime(TimeType timeType, UUID uuid, int timeToAdd) {
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+
+            // Check if connection is still alive
+            if (mysqlLibrary.isClosed()) {
+                mysqlLibrary.connect();
+            }
+
+            String tableName = tableNames.get(timeType);
+
+            final String statement = "INSERT INTO " + tableName + " VALUES ('" + uuid.toString() + "', " + timeToAdd
+                    + ", CURRENT_TIMESTAMP) " + "ON DUPLICATE KEY UPDATE " + "time= time + " + timeToAdd;
+
+            mysqlLibrary.execute(statement);
             int currentTimeValue = getFreshPlayerTime(timeType, uuid);
 
-            setPlayerTime(timeType, uuid, currentTimeValue + timeToAdd);
+            // Update cache with new value
+            cacheManager.registerCachedTime(timeType, uuid, currentTimeValue);
+
         });
     }
 
