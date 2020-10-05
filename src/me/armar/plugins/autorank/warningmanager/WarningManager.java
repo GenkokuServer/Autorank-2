@@ -97,8 +97,6 @@ public class WarningManager {
         }
 
         // Log a warning when it occurs.
-        plugin.getLoggerManager().logMessage("Warning occurred: " + message);
-
         warnings.put(message, priority);
     }
 

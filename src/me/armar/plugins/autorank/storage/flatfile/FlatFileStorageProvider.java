@@ -47,9 +47,6 @@ public class FlatFileStorageProvider extends PlayTimeStorageProvider {
 
         plugin.debugMessage("Setting time of " + uuid.toString() + " to " + time + " (" + timeType.name() + ").");
 
-        // Setting time of a player
-        plugin.getLoggerManager().logMessage("Setting (Flatfile) " + timeType.name() + " of " + uuid.toString() + " " +
-                "to: " + time);
 
         final SimpleYamlConfiguration data = this.getDataFile(timeType);
 
@@ -81,7 +78,6 @@ public class FlatFileStorageProvider extends PlayTimeStorageProvider {
 
         // Create a new file so it's empty
         if (timeType == TimeType.DAILY_TIME) {
-            plugin.getLoggerManager().logMessage("Resetting daily time file");
 
             try {
                 dataFiles.put(TimeType.DAILY_TIME,
@@ -90,7 +86,6 @@ public class FlatFileStorageProvider extends PlayTimeStorageProvider {
                 e.printStackTrace();
             }
         } else if (timeType == TimeType.WEEKLY_TIME) {
-            plugin.getLoggerManager().logMessage("Resetting weekly time file");
 
             try {
                 dataFiles.put(TimeType.WEEKLY_TIME,
@@ -99,7 +94,6 @@ public class FlatFileStorageProvider extends PlayTimeStorageProvider {
                 e.printStackTrace();
             }
         } else if (timeType == TimeType.MONTHLY_TIME) {
-            plugin.getLoggerManager().logMessage("Resetting monthly time file");
 
             try {
                 dataFiles.put(TimeType.MONTHLY_TIME,
@@ -109,7 +103,6 @@ public class FlatFileStorageProvider extends PlayTimeStorageProvider {
                 e.printStackTrace();
             }
         } else if (timeType == TimeType.TOTAL_TIME) {
-            plugin.getLoggerManager().logMessage("Resetting total time file");
 
             try {
                 dataFiles.put(TimeType.TOTAL_TIME,
